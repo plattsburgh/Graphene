@@ -34,7 +34,10 @@ Route::get('/page/{group}/{slug}', 'PageController@run');
 Route::get('/page/{group}','PageController@redirect')->middleware('no.save.session');
 Route::get('/community/{group}/{slug?}', 'PageController@run'); /* Compatibility with old portal */
 Route::get('/r/{template}/{group}/{slug?}', 'PageController@render');
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('/login',function(){
+  return redirect('/');
+});
+
 Route::get('/image/{image}','ImageController@get')->middleware('no.save.session');
 
 Route::group(['middleware' => ['custom.auth']], function () {
